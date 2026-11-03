@@ -10,6 +10,7 @@ export const NAV_LINKS = [
   { href: "/#app", label: "The App" },
   { href: "/#involved", label: "Get Involved" },
   { href: "/#faq", label: "FAQ" },
+  { href: "/resources", label: "Resources" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -32,7 +33,7 @@ export function Nav() {
           </span>
         </a>
 
-        <div className="hidden items-center gap-7 lg:flex">
+        <div className="hidden items-center gap-6 lg:flex xl:gap-7">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="text-[0.95rem] text-paper/85 transition-colors duration-200 hover:text-gold-bright">
               {l.label}
