@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { notFound } from "next/navigation";
 import { Nav, Footer } from "@/components/SiteChrome";
 import { ResourceCards } from "@/components/ResourceCards";
@@ -100,6 +102,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const guide = getGuide((await params).slug);
   if (!guide) notFound();
   const related = GUIDES.filter((g) => g.slug !== guide.slug);
+  // The download button appears only once the guide's PDF has been added at public/downloads/<slug>.pdf
+  const pdfHref = `/downloads/${guide.slug}.pdf`;
+  const hasPdf = existsSync(join(process.cwd(), "public", "downloads", `${guide.slug}.pdf`));
 
   return (
     <>
@@ -113,6 +118,15 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           <p className="mt-6 max-w-2xl text-lg italic text-paper/80">{guide.intro}</p>
           {guide.tagline && <p className="mt-3 max-w-2xl text-paper/70">{guide.tagline}</p>}
           <p className="mt-6 text-sm text-paper/55">A guide from the Ambient Thread Foundation</p>
+          {hasPdf && (
+            <a
+              href={pdfHref}
+              download
+              className="mt-8 inline-block rounded-full bg-gold px-8 py-3.5 font-bold text-navy transition-colors duration-200 hover:bg-gold-bright"
+            >
+              Download PDF<span className="sr-only"> of {guide.title}</span>
+            </a>
+          )}
         </header>
 
         <div className="bg-paper text-ink">
