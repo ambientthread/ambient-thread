@@ -57,14 +57,22 @@ function Section({ section }: { section: GuideSection }) {
         )}
         <span>{section.heading}</span>
       </h2>
-      <ul className="divide-y divide-navy/10 px-6">
-        {section.items.map((item) => (
-          <li key={item.text} className="py-4 text-ink">
-            {item.label && <span className="block font-bold uppercase tracking-[0.08em] text-ink">{item.label}</span>}
-            {item.quote ? <q className="italic">{item.text}</q> : <span className="text-ink-soft">{item.text}</span>}
-          </li>
-        ))}
-      </ul>
+      {section.kind === "text" ? (
+        <div className="space-y-4 px-6 py-5 leading-relaxed text-ink-soft">
+          {section.items.map((item) => (
+            <p key={item.text}>{item.text}</p>
+          ))}
+        </div>
+      ) : (
+        <ul className="divide-y divide-navy/10 px-6">
+          {section.items.map((item) => (
+            <li key={item.text} className="py-4 text-ink">
+              {item.label && <span className="block font-bold uppercase tracking-[0.08em] text-ink">{item.label}</span>}
+              {item.quote ? <q className="italic">{item.text}</q> : <span className="text-ink-soft">{item.text}</span>}
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
