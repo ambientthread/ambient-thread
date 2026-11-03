@@ -1,0 +1,41 @@
+{
+  "intake": {},
+  "manifest": [
+    {
+      "kind": "doc",
+      "repoPath": "business-info/guide-to-make-everyday-outings-easier.md",
+      "originalName": "Guide to Make Everyday Outings Easier.pdf",
+      "extractedTextPath": "business-info/guide-to-make-everyday-outings-easier.md"
+    },
+    {
+      "kind": "doc",
+      "repoPath": "business-info/noisy-environments-guide.md",
+      "originalName": "Noisy Environments Guide.pdf",
+      "extractedTextPath": "business-info/noisy-environments-guide.md"
+    },
+    {
+      "kind": "doc",
+      "repoPath": "business-info/sound-accessibility-intro-guide.md",
+      "originalName": "Sound Accessibility Intro Guide.pdf",
+      "extractedTextPath": "business-info/sound-accessibility-intro-guide.md"
+    },
+    {
+      "kind": "doc",
+      "repoPath": "business-info/noisy-environment-conversation-guide.md",
+      "originalName": "Noisy Environment Conversation Guide.pdf",
+      "extractedTextPath": "business-info/noisy-environment-conversation-guide.md"
+    },
+    {
+      "kind": "doc",
+      "repoPath": "business-info/noise-friendly-public-spaces-guide.md",
+      "originalName": "Noise-Friendly Public Spaces Guide.pdf",
+      "extractedTextPath": "business-info/noise-friendly-public-spaces-guide.md"
+    },
+    {
+      "kind": "doc",
+      "repoPath": "business-info/sound-accessibility-guide-page.md",
+      "originalName": "Sound Accessibility Guide Page.pdf",
+      "extractedTextPath": "business-info/sound-accessibility-guide-page.md"
+    }
+  ]
+}
