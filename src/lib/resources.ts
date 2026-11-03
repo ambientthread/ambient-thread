@@ -11,12 +11,17 @@ export type GuideItem = {
 
 export type GuideSection = {
   heading: string;
-  /** "list" = tips, "checklist" = tickable checkboxes, "text" = paragraphs. */
-  kind: "list" | "checklist" | "text";
+  /** "list" = tips, "checklist" = tickable checkboxes, "text" = paragraphs,
+   *  "groups" = side-by-side sub-lists (see `groups`). */
+  kind: "list" | "checklist" | "text" | "groups";
   /** Step number shown in the section badge, as in the PDF. */
   number?: number;
   /** Bullet items ("list" / "checklist") or paragraphs ("text"). */
   items: GuideItem[];
+  /** Short bullets shown in two columns on wider screens. */
+  columns?: 2;
+  /** Sub-lists for "groups" sections. */
+  groups?: { heading: string; items: GuideItem[] }[];
 };
 
 export type Guide = {
@@ -26,12 +31,119 @@ export type Guide = {
   summary: string;
   /** Short introduction shown under the title. */
   intro: string;
+  /** Optional second line under the introduction. */
+  tagline?: string;
+  /** "stack" = one full-width section per row (default: two-column grid). */
+  layout?: "stack";
   sections: GuideSection[];
   /** Closing line from the guide. */
   closing?: string;
+  /** Optional line under the closing, ending in a link. */
+  closingNote?: { text: string; linkText: string; href: string };
 };
 
 export const GUIDES: Guide[] = [
+  {
+    slug: "what-is-sound-accessibility",
+    title: "What is Sound Accessibility?",
+    summary:
+      "An introduction to sound accessibility, common barriers, and practical ways to support more inclusive participation.",
+    intro: "A beginner\u2019s guide to more accessible everyday listening and communication.",
+    tagline: "A practical starting point for making everyday sound, communication, and participation more welcoming.",
+    layout: "stack",
+    sections: [
+      {
+        heading: "What sound accessibility means",
+        kind: "text",
+        number: 1,
+        items: [
+          {
+            text: "Sound accessibility means offering choices in how people experience sound, receive information, and communicate. Participation with sound accessibility in mind does not depend on hearing or processing sound in a particular way.",
+          },
+          {
+            text: "At Ambient Thread Foundation, we focus on everyday comfort, awareness, communication, and connection for people with different hearing and auditory preferences and needs.",
+          },
+        ],
+      },
+      {
+        heading: "Common barriers",
+        kind: "list",
+        number: 2,
+        columns: 2,
+        items: [
+          { text: "Loud or overlapping sounds" },
+          { text: "Fast-paced speech" },
+          { text: "Unclear announcements" },
+          { text: "Unexpected sounds" },
+          { text: "Poor acoustics and echoes" },
+          { text: "Audio-only instructions" },
+          { text: "Pressure to respond before someone is ready" },
+          { text: "Sounds without a clear source" },
+        ],
+      },
+      {
+        heading: "Small adjustments that help",
+        kind: "groups",
+        number: 3,
+        items: [],
+        groups: [
+          {
+            heading: "Individuals",
+            items: [
+              { text: "Choose the communication options that work for you." },
+              { text: "Ask what to expect before an event or visit." },
+              { text: "Request written information, a pause, or a quieter option." },
+            ],
+          },
+          {
+            heading: "Friends and peers",
+            items: [
+              { text: "Ask what helps rather than assuming." },
+              { text: "Speak one at a time and allow time to respond." },
+              { text: "Offer to repeat, rephrase, or write down key details." },
+            ],
+          },
+          {
+            heading: "Workplaces and hosts",
+            items: [
+              { text: "Share schedules and instructions ahead of time." },
+              { text: "Provide captions and written alternatives." },
+              { text: "Offer quieter spaces and flexible ways to participate." },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Questions worth asking",
+        kind: "list",
+        number: 4,
+        items: [
+          { text: "Is information available in writing?" },
+          { text: "Is there a quiet option?" },
+          { text: "Are materials and instructions available ahead of time?" },
+          { text: "Can I participate without speaking or listening continuously?" },
+          { text: "Who can I contact about accessibility?" },
+        ],
+      },
+      {
+        heading: "Our approach: Choice. Clarity. Everyday participation.",
+        kind: "text",
+        number: 5,
+        items: [
+          {
+            text: "There is no single right way to listen. We\u2019re working toward a world where people have more choice in how they participate\u2014and less pressure to hide or repeatedly explain their needs.",
+          },
+          { text: "Start with one small change. Notice how participation can change when it becomes easier." },
+        ],
+      },
+    ],
+    closing: "One small change to start. Endless possibilities.",
+    closingNote: {
+      text: "Learn about Ambient Thread\u2019s mission and what we\u2019re building at",
+      linkText: "AmbientThread.org",
+      href: "/#mission",
+    },
+  },
   {
     slug: "make-everyday-outings-easier",
     title: "Make Everyday Outings Easier",

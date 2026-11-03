@@ -57,7 +57,26 @@ function Section({ section }: { section: GuideSection }) {
         )}
         <span>{section.heading}</span>
       </h2>
-      {section.kind === "text" ? (
+      {section.kind === "groups" ? (
+        <div className="grid grid-cols-1 gap-6 px-6 py-5 md:grid-cols-3 md:gap-8">
+          {section.groups?.map((g) => (
+            <div key={g.heading}>
+              <h3 className="font-bold text-ink">{g.heading}</h3>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-ink-soft marker:text-gold">
+                {g.items.map((item) => (
+                  <li key={item.text}>{item.text}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ) : section.columns === 2 ? (
+        <ul className="list-disc space-y-2 py-5 pl-11 pr-6 text-ink-soft marker:text-gold sm:columns-2 sm:gap-10 [&>li]:break-inside-avoid">
+          {section.items.map((item) => (
+            <li key={item.text}>{item.text}</li>
+          ))}
+        </ul>
+      ) : section.kind === "text" ? (
         <div className="space-y-4 px-6 py-5 leading-relaxed text-ink-soft">
           {section.items.map((item) => (
             <p key={item.text}>{item.text}</p>
@@ -92,18 +111,28 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           </a>
           <h1 className="font-display mt-8 text-5xl font-semibold text-paper sm:text-6xl">{guide.title}</h1>
           <p className="mt-6 max-w-2xl text-lg italic text-paper/80">{guide.intro}</p>
+          {guide.tagline && <p className="mt-3 max-w-2xl text-paper/70">{guide.tagline}</p>}
           <p className="mt-6 text-sm text-paper/55">A guide from the Ambient Thread Foundation</p>
         </header>
 
         <div className="bg-paper text-ink">
           <article className="mx-auto max-w-4xl px-5 py-16 sm:px-8 lg:py-20">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className={`grid grid-cols-1 gap-6 ${guide.layout === "stack" ? "" : "md:grid-cols-2"}`}>
               {guide.sections.map((s) => (
                 <Section key={s.heading} section={s} />
               ))}
             </div>
             {guide.closing && (
               <p className="font-display mt-14 text-center text-2xl italic text-ink sm:text-3xl">{guide.closing}</p>
+            )}
+            {guide.closingNote && (
+              <p className="mt-4 text-center text-ink-soft">
+                {guide.closingNote.text}{" "}
+                <a href={guide.closingNote.href} className="font-bold text-ink underline underline-offset-4 hover:text-ink-soft">
+                  {guide.closingNote.linkText}
+                </a>
+                .
+              </p>
             )}
           </article>
         </div>
