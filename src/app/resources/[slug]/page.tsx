@@ -128,7 +128,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                 download
                 className="inline-block rounded-full bg-gold px-8 py-3.5 font-bold text-navy transition-colors duration-200 hover:bg-gold-bright"
               >
-                Download PDF<span className="sr-only"> of {guide.title}</span>
+                Printable version (PDF)<span className="sr-only"> of {guide.title}</span>
               </a>
             )}
             <SavePdfButton title={guide.title} />
