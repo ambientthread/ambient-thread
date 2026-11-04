@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { notFound } from "next/navigation";
 import { Nav, Footer } from "@/components/SiteChrome";
 import { ResourceCards } from "@/components/ResourceCards";
+import { SavePdfButton } from "@/components/SavePdfButton";
 import { GUIDES, getGuide, type GuideSection } from "@/lib/resources";
 import { SITE_URL } from "@/lib/site";
 
@@ -31,7 +32,7 @@ function Section({ section }: { section: GuideSection }) {
 
   if (section.kind === "checklist") {
     return (
-      <section aria-labelledby={id} className="rounded-lg border border-navy/15 bg-paper-dim p-6 sm:p-8">
+      <section aria-labelledby={id} className="rounded-lg border border-navy/15 bg-paper-dim p-6 sm:p-8 print:break-inside-avoid">
         <h2 id={id} className="font-display text-2xl font-semibold italic text-ink sm:text-3xl">
           {section.heading}
         </h2>
@@ -50,7 +51,7 @@ function Section({ section }: { section: GuideSection }) {
   }
 
   return (
-    <section aria-labelledby={id} className="overflow-hidden rounded-lg border border-navy/15 bg-white/50">
+    <section aria-labelledby={id} className="overflow-hidden rounded-lg border border-navy/15 bg-white/50 print:break-inside-avoid">
       <h2 id={id} className="flex items-center gap-3 bg-navy px-6 py-4 text-sm font-bold uppercase tracking-[0.12em] text-paper">
         {section.number !== undefined && (
           <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold font-display text-base italic text-navy">
@@ -108,25 +109,30 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
   return (
     <>
-      <Nav />
-      <main className="bg-navy pt-24">
+      <div className="print:hidden">
+        <Nav />
+      </div>
+      <main className="bg-navy pt-24 [-webkit-print-color-adjust:exact] [print-color-adjust:exact] print:pt-0">
         <header className="mx-auto max-w-4xl px-5 pb-14 pt-14 sm:px-8">
-          <a href="/resources" className="text-sm font-bold text-gold-bright underline underline-offset-4 hover:text-gold">
+          <a href="/resources" className="text-sm font-bold text-gold-bright underline underline-offset-4 hover:text-gold print:hidden">
             <span aria-hidden="true">&larr; </span>All resources
           </a>
           <h1 className="font-display mt-8 text-5xl font-semibold text-paper sm:text-6xl">{guide.title}</h1>
           <p className="mt-6 max-w-2xl text-lg italic text-paper/80">{guide.intro}</p>
           {guide.tagline && <p className="mt-3 max-w-2xl text-paper/70">{guide.tagline}</p>}
           <p className="mt-6 text-sm text-paper/55">A guide from the Ambient Thread Foundation</p>
-          {hasPdf && (
-            <a
-              href={pdfHref}
-              download
-              className="mt-8 inline-block rounded-full bg-gold px-8 py-3.5 font-bold text-navy transition-colors duration-200 hover:bg-gold-bright"
-            >
-              Download PDF<span className="sr-only"> of {guide.title}</span>
-            </a>
-          )}
+          <div className="mt-8 flex flex-wrap items-center gap-4 print:hidden">
+            {hasPdf && (
+              <a
+                href={pdfHref}
+                download
+                className="inline-block rounded-full bg-gold px-8 py-3.5 font-bold text-navy transition-colors duration-200 hover:bg-gold-bright"
+              >
+                Printable version (PDF)<span className="sr-only"> of {guide.title}</span>
+              </a>
+            )}
+            <SavePdfButton title={guide.title} />
+          </div>
         </header>
 
         <div className="bg-paper text-ink">
@@ -151,7 +157,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           </article>
         </div>
 
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-20">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-20 print:hidden">
           {related.length > 0 && (
             <section aria-labelledby="related-heading" className="mb-12">
               <h2 id="related-heading" className="eyebrow mb-8 text-gold-bright">
@@ -165,7 +171,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           </a>
         </div>
       </main>
-      <Footer />
+      <div className="print:hidden">
+        <Footer />
+      </div>
     </>
   );
 }
