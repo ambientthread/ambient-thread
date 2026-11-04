@@ -18,6 +18,21 @@
       "repoPath": "business-info/guide-noise-friendly-public-spaces.md",
       "originalName": "Guide_Noise-Friendly Public Spaces.pdf",
       "extractedTextPath": "business-info/guide-noise-friendly-public-spaces.md"
+    },
+    {
+      "kind": "photo",
+      "repoPath": "public/images/business/guide-what-is-sound-accessibility.webp",
+      "originalName": "Guide_What is Sound Accessibility.jpg"
+    },
+    {
+      "kind": "photo",
+      "repoPath": "public/images/business/guide-conversations-in-noisy-places.webp",
+      "originalName": "Guide_Conversations in Noisy Places.jpg"
+    },
+    {
+      "kind": "photo",
+      "repoPath": "public/images/business/guide-make-everyday-outings-easier.webp",
+      "originalName": "Guide_Make Everyday Outings Easier.jpg"
     }
   ]
 }
