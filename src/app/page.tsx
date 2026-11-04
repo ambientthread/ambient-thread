@@ -1,6 +1,7 @@
 import { Nav, Footer, DONATE_URL } from "@/components/SiteChrome";
 import { Contact } from "@/components/HomeContact";
 import { StickyBar } from "@/components/StickyBar";
+import { ResourceCards } from "@/components/ResourceCards";
 import { IconCompass, IconConversation, IconEar, IconHeadphones, IconHeart, IconInstagram, IconMail, IconSliders } from "@/components/icons";
 
 /* ----------------------------------------------------------------------------
@@ -740,6 +741,34 @@ function Faq() {
   );
 }
 
+/* -------------------------------- Resources -------------------------------- */
+
+function Resources() {
+  return (
+    <section id="resources" className="bg-navy-deep">
+      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
+        <p className="eyebrow mb-5 text-gold-bright">Resources</p>
+        <h2 className="font-display text-4xl font-semibold text-paper sm:text-5xl">
+          Guides for everyday listening.
+        </h2>
+        <p className="mt-6 max-w-2xl text-lg text-paper/80">
+          Practical guides for everyday listening and communication, to use on your own or share
+          with the people around you.
+        </p>
+        <div className="mt-12">
+          <ResourceCards headingLevel="h3" />
+        </div>
+        <a
+          href="/resources"
+          className="mt-10 inline-flex rounded-full border border-gold/60 px-7 py-3.5 font-bold text-paper transition-colors duration-200 hover:border-gold-bright hover:text-gold-bright"
+        >
+          See all resources
+        </a>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------------------------- Footer ---------------------------------- */
 
 /* ----------------------------------- Page ----------------------------------- */
@@ -765,6 +794,7 @@ export default function Home() {
         <HowWereBuilding />
         <GetInvolved />
         <Faq />
+        <Resources />
         <Contact />
       </main>
       <Footer />

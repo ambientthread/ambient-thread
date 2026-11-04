@@ -1,0 +1,23 @@
+{
+  "intake": {},
+  "manifest": [
+    {
+      "kind": "doc",
+      "repoPath": "business-info/guide-sound-accessibility.md",
+      "originalName": "Guide_Sound Accessibility.pdf",
+      "extractedTextPath": "business-info/guide-sound-accessibility.md"
+    },
+    {
+      "kind": "doc",
+      "repoPath": "business-info/guide-noisy-environment-conversation.md",
+      "originalName": "Guide_Noisy Environment Conversation.pdf",
+      "extractedTextPath": "business-info/guide-noisy-environment-conversation.md"
+    },
+    {
+      "kind": "doc",
+      "repoPath": "business-info/guide-noise-friendly-public-spaces.md",
+      "originalName": "Guide_Noise-Friendly Public Spaces.pdf",
+      "extractedTextPath": "business-info/guide-noise-friendly-public-spaces.md"
+    }
+  ]
+}
