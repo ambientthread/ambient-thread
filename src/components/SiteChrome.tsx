@@ -124,7 +124,16 @@ export function Footer() {
 
         <div aria-hidden="true" className="my-10 h-px w-full bg-white/10" />
 
-        <p className="max-w-4xl text-sm leading-relaxed text-paper/55">
+        <div className="max-w-4xl space-y-2 leading-relaxed text-paper/90">
+          <p>
+            <strong className="text-paper">Ambient Thread Foundation</strong> is a 501(c)(3)
+            tax-exempt public charity (EIN 42-4819969). Making everyday listening easier, for
+            everyone.
+          </p>
+          <p>Donations are tax-deductible to the extent allowed by law.</p>
+        </div>
+
+        <p className="mt-6 max-w-4xl text-sm leading-relaxed text-paper/55">
           The software application and the Ambient Thread Foundation are intended solely for
           general wellness purposes to enhance and customize everyday consumer audio
           experiences and situational environmental listening. This software does not provide
@@ -132,13 +141,6 @@ export function Footer() {
           deafness, or any medical condition. It is not an FDA-approved medical device or a
           registered hearing aid. Users experiencing persistent hearing difficulty should
           consult a licensed healthcare professional.
-        </p>
-
-        <p className="mt-6 max-w-4xl text-sm leading-relaxed text-paper/55">
-          Ambient Thread Foundation is a registered New Mexico non-profit organization and an
-          IRS-recognized 501(c)(3) tax-exempt public charity. Donations are tax-deductible to the
-          extent allowed by law. EIN 42-4819969. Mailing address: 1209 Mountain Road Pl NE,
-          Ste N, Albuquerque, NM 87110.
         </p>
 
         <p className="mt-6 text-sm leading-relaxed text-paper/55">
